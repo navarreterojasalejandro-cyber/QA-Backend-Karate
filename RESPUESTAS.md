@@ -15,3 +15,7 @@ Cada escenario comprueba el estado HTTP y valida los campos y tipos de la respue
 **d. ¿Qué aprendí?**
 
 Aprendí a convertir el comportamiento esperado de una API en escenarios automáticos y a distinguir un error de la prueba de una discrepancia del servicio. El caso de `price_max` muestra que un resultado fallido también puede aportar evidencia útil para QA.
+
+## Resultado de Cucumber
+
+En la ejecución del 30 de septiembre de 2026, Cucumber reportó **21 escenarios: 20 aprobados y 1 fallido (95 %)**. Falló “Filtrar productos por precio máximo”: con `price_max=10000`, la API respondió `200`, pero incluyó un producto con precio `12213`. Las demás comprobaciones de ese escenario pasaron.
