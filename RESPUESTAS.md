@@ -19,3 +19,11 @@ Aprendí a convertir el comportamiento esperado de una API en escenarios automá
 ## Resultado de Cucumber
 
 En la ejecución del 30 de septiembre de 2026, Cucumber reportó **21 escenarios: 20 aprobados y 1 fallido (95 %)**. Falló “Filtrar productos por precio máximo”: con `price_max=10000`, la API respondió `200`, pero incluyó un producto con precio `12213`. Las demás comprobaciones de ese escenario pasaron.
+
+**Resumen de ejecución:**
+
+![Resumen de Gradle: 21 pruebas, una falla y 95 % exitoso](output/playwright/resumen-ejecucion.png)
+
+**Detalle del escenario fallido en Cucumber:**
+
+![Cucumber muestra el producto de precio 12213 en el filtro máximo](output/playwright/cucumber-fallo-filtro-precio.png)
