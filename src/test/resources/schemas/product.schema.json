@@ -1,0 +1,10 @@
+{
+  "id": "#number",
+  "title": "#string",
+  "price": "#number",
+  "description": "#string",
+  "images": "#[]",
+  "category": "##object",
+  "creationAt": "##string",
+  "updatedAt": "##string"
+}

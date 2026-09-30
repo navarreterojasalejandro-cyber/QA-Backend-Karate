@@ -1,0 +1,7 @@
+{
+  "title": "producto de prueba",
+  "price": 19.99,
+  "description": "Producto creado por una prueba automatizada",
+  "categoryId": 1,
+  "images": ["https://placehold.co/600x400"]
+}

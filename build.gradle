@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.qa.platzi'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    karateVersion = '1.5.2'
+    cucumberReportingVersion = '5.11.0'
+}
+
+dependencies {
+    testImplementation "io.karatelabs:karate-junit5:${karateVersion}"
+    testImplementation "net.masterthought:cucumber-reporting:${cucumberReportingVersion}"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+sourceSets {
+    test {
+        resources {
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
+    }
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+    systemProperty 'karate.options', System.getProperty('karate.options', '')
+    systemProperty 'karate.env', System.getProperty('karate.env', 'dev')
+    outputs.upToDateWhen { false }
+}
+
+tasks.register('generateCucumberReport', JavaExec) {
+    group = 'verification'
+    description = 'Genera el reporte HTML de Cucumber a partir del JSON producido por Karate.'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'report.CucumberReportGenerator'
+    args layout.buildDirectory.dir('karate-reports').get().asFile.absolutePath,
+         layout.buildDirectory.dir('reports/cucumber').get().asFile.absolutePath
+}
+
+tasks.named('test') {
+    finalizedBy tasks.named('generateCucumberReport')
+}
